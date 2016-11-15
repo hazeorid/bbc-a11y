@@ -24,10 +24,10 @@ describe('minimum text size standard', function() {
   });
 
   it('only reports the parent element when a child element also has small fonts', function() {
-    $('<div style="font-size: 1px"><span style="font-size: 2px">Text!</span></div>').appendTo('body');
+    $('<div style="font-size: 1px"><span>child inherits tiny text</span> from the parent</div>').appendTo('body');
     var failures = [];
     var fail = function(failure) { failures.push(failure); }
     standard.validate($, fail);
-    expect(failures).to.eql(['Text size too small (2px):']);
+    expect(JSON.stringify(failures)).to.eql(JSON.stringify(['Text size too small (1px):']));
   });
 });

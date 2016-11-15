@@ -20,11 +20,17 @@ Feature: Minimum text size
           font-size: 62.5%; /* Set default size of 1em to 10px */
         }
 
+        p {
+          font-size: 20px;
+        }
+
         b {
           font-size: 9px;
         }
       </style>
-      <span>Some text</span> with <span>more <b>text</b> also</span>.
+      <p>
+        <span>Some text</span> with <span>more <b>text</b> also</span>
+      </p>
       """
     When I validate the "Minimum text size: text cannot be too small" standard
     Then it fails with the message:
