@@ -143,9 +143,7 @@ module.exports = function() {
 
   this.Then(/^it should fail with exactly:$/, function (expectedOutput) {
     var actualOutput = (this.stdout + this.stderr)
-    // HACK: work around stupid travis issue with xvfb
-    var sanitisedActualOutput = actualOutput.split("\n").filter(line => line != 'Xlib:  extension "RANDR" missing on display ":99.0".').join("\n")
-    assert.equal(sanitisedActualOutput, expectedOutput, "Expected:\n" + expectedOutput.replace(/\n/g, "[\\n]\n") + "\nActual:\n" + sanitisedActualOutput.replace(/\n/g, "[\\n]\n"))
+    assert.equal(actualOutput, expectedOutput, "Expected:\n" + expectedOutput.replace(/\n/g, "[\\n]\n") + "\nActual:\n" + actualOutput.replace(/\n/g, "[\\n]\n"))
   })
 
   this.Then(/^it should pass with:$/, function (string) {
